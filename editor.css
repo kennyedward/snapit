@@ -1,0 +1,149 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #1e1e22;
+  --panel: #2a2a30;
+  --panel-hover: #3a3a42;
+  --border: #3d3d46;
+  --text: #e9e9ee;
+  --muted: #a0a0aa;
+  --accent: #4f8cff;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Toolbar ---------- */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 14px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-right: 14px;
+  border-right: 1px solid var(--border);
+}
+.group:last-child { border-right: none; padding-right: 0; }
+.group.right { margin-left: auto; border-right: none; }
+
+.tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  transition: background 0.12s, border-color 0.12s;
+}
+.tool:hover { background: var(--panel-hover); }
+.tool.active {
+  background: rgba(79, 140, 255, 0.18);
+  border-color: var(--accent);
+}
+.tool.primary {
+  background: var(--accent);
+  color: #fff;
+}
+.tool.primary:hover { background: #3f7af0; }
+
+.tool .ico { font-size: 15px; }
+
+.swatch-wrap, .range-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.range-wrap input[type="range"] { width: 90px; }
+.val {
+  min-width: 18px;
+  text-align: right;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+input[type="color"] {
+  width: 30px;
+  height: 26px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+}
+
+/* ---------- Stage / canvas ---------- */
+.stage {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+}
+
+#canvas {
+  background: #fff;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+
+/* Floating text editor */
+.text-input {
+  position: absolute;
+  display: none;
+  margin: 0;
+  padding: 2px 4px;
+  border: 1px dashed var(--accent);
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+  white-space: pre;
+  line-height: 1.2;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.message {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+}

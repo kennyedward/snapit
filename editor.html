@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SnapIt — Editor</title>
+  <link rel="stylesheet" href="editor.css" />
+</head>
+<body>
+  <header class="toolbar">
+    <div class="group">
+      <button class="tool" data-tool="select" title="Select / move (V)">
+        <span class="ico">⤢</span><span class="label">Select</span>
+      </button>
+      <button class="tool" data-tool="rect" title="Rectangle (R)">
+        <span class="ico">▭</span><span class="label">Rect</span>
+      </button>
+      <button class="tool" data-tool="ellipse" title="Circle / ellipse (C)">
+        <span class="ico">◯</span><span class="label">Circle</span>
+      </button>
+      <button class="tool" data-tool="text" title="Text (T)">
+        <span class="ico">T</span><span class="label">Text</span>
+      </button>
+    </div>
+
+    <div class="group">
+      <label class="swatch-wrap" title="Stroke / text color">
+        <input type="color" id="color" value="#ff3b30" />
+        <span>Color</span>
+      </label>
+
+      <label class="range-wrap" title="Stroke width">
+        <span>Width</span>
+        <input type="range" id="strokeWidth" min="1" max="20" value="4" />
+        <span id="strokeVal" class="val">4</span>
+      </label>
+
+      <label class="range-wrap" title="Font size (text tool)">
+        <span>Font</span>
+        <input type="range" id="fontSize" min="10" max="80" value="28" />
+        <span id="fontVal" class="val">28</span>
+      </label>
+    </div>
+
+    <div class="group">
+      <button id="deleteBtn" class="tool" title="Delete selected (Del)">
+        <span class="ico">🗑</span><span class="label">Delete</span>
+      </button>
+      <button id="undoBtn" class="tool" title="Undo (Ctrl/Cmd+Z)">
+        <span class="ico">↶</span><span class="label">Undo</span>
+      </button>
+      <button id="redoBtn" class="tool" title="Redo (Ctrl/Cmd+Shift+Z)">
+        <span class="ico">↷</span><span class="label">Redo</span>
+      </button>
+    </div>
+
+    <div class="group right">
+      <button id="copyBtn" class="tool primary" title="Copy to clipboard">
+        <span class="ico">⧉</span><span class="label">Copy</span>
+      </button>
+      <button id="saveBtn" class="tool primary" title="Download PNG">
+        <span class="ico">⤓</span><span class="label">Save PNG</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="stage" class="stage">
+    <canvas id="canvas"></canvas>
+    <!-- Floating textarea used while editing a text object -->
+    <textarea id="textInput" class="text-input" spellcheck="false"></textarea>
+    <div id="message" class="message" hidden></div>
+  </main>
+
+  <script src="editor.js"></script>
+</body>
+</html>
