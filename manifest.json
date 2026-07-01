@@ -2,6 +2,7 @@
   "manifest_version": 3,
   "name": "SnapIt — Screenshot & Annotate",
   "version": "1.0.0",
+  "author": "Kehinde Edward Odewole",
   "description": "Capture the visible browser tab and annotate it with text, rectangles, and circles.",
   "permissions": ["activeTab", "storage"],
   "content_security_policy": {
