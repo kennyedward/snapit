@@ -3,7 +3,7 @@
   "name": "SnapIt — Screenshot & Annotate",
   "version": "1.0.0",
   "description": "Capture the visible browser tab and annotate it with text, rectangles, and circles.",
-  "permissions": ["activeTab", "tabs", "storage", "scripting"],
+  "permissions": ["activeTab", "storage", "scripting"],
   "background": {
     "service_worker": "background.js"
   },
