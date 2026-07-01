@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "description": "Capture the visible browser tab and annotate it with text, rectangles, and circles.",
   "permissions": ["activeTab", "tabs", "storage", "scripting"],
-  "host_permissions": ["<all_urls>"],
   "background": {
     "service_worker": "background.js"
   },
