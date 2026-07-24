@@ -121,7 +121,21 @@ function drawObject(o) {
   ctx.lineWidth = o.strokeWidth;
   ctx.lineJoin = "round";
 
-  if (o.type === "rect") {
+  if (o.type === "pen") {
+    ctx.lineCap = "round";
+    const pts = o.points;
+    if (pts.length === 1) {
+      // A single tap renders as a dot.
+      ctx.beginPath();
+      ctx.arc(pts[0].x, pts[0].y, o.strokeWidth / 2, 0, Math.PI * 2);
+      ctx.fill();
+    } else {
+      ctx.beginPath();
+      ctx.moveTo(pts[0].x, pts[0].y);
+      for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+      ctx.stroke();
+    }
+  } else if (o.type === "rect") {
     const { x, y, w, h } = normRect(o);
     ctx.strokeRect(x, y, w, h);
   } else if (o.type === "ellipse") {
@@ -142,6 +156,7 @@ function drawObject(o) {
 
 function drawSelection(o) {
   if (!o) return;
+  if (o.type === "pen") return; // strokes highlight without a selection box
   const b = boundsOf(o);
   ctx.save();
   ctx.strokeStyle = "#4f8cff";
@@ -162,6 +177,13 @@ function normRect(o) {
 }
 
 function boundsOf(o) {
+  if (o.type === "pen") {
+    const xs = o.points.map((p) => p.x);
+    const ys = o.points.map((p) => p.y);
+    const x = Math.min(...xs);
+    const y = Math.min(...ys);
+    return { x, y, w: Math.max(...xs) - x, h: Math.max(...ys) - y };
+  }
   if (o.type === "text") {
     ctx.save();
     ctx.font = `${o.fontSize}px -apple-system, "Segoe UI", Roboto, sans-serif`;
@@ -226,6 +248,21 @@ canvas.addEventListener("mousedown", (evt) => {
     return;
   }
 
+  if (currentTool === "pen") {
+    // Freehand highlight: record points as the mouse moves.
+    const o = {
+      id: newId(),
+      type: "pen",
+      points: [{ x: p.x, y: p.y }],
+      color: style.color,
+      strokeWidth: style.strokeWidth,
+    };
+    objects.push(o);
+    selectedId = o.id;
+    drag = { mode: "draw", id: o.id };
+    return;
+  }
+
   // rect / ellipse: begin a new shape
   const o = {
     id: newId(),
@@ -248,11 +285,17 @@ window.addEventListener("mousemove", (evt) => {
   if (drag.mode === "create") {
     o.w = p.x - drag.startX;
     o.h = p.y - drag.startY;
+  } else if (drag.mode === "draw") {
+    o.points.push({ x: p.x, y: p.y });
   } else if (drag.mode === "move") {
     const dx = p.x - drag.startX;
     const dy = p.y - drag.startY;
-    o.x = drag.orig.x + dx;
-    o.y = drag.orig.y + dy;
+    if (o.type === "pen") {
+      o.points = drag.orig.points.map((pt) => ({ x: pt.x + dx, y: pt.y + dy }));
+    } else {
+      o.x = drag.orig.x + dx;
+      o.y = drag.orig.y + dy;
+    }
   }
   redraw();
 });
@@ -271,6 +314,15 @@ window.addEventListener("mouseup", () => {
     }
     // Auto-return to select after drawing one shape.
     setTool("select");
+  } else if (drag.mode === "draw") {
+    // Discard a stray click with no real stroke; otherwise keep the highlight.
+    if (o && o.points.length < 2) {
+      objects = objects.filter((x) => x.id !== o.id);
+      selectedId = null;
+    } else {
+      snapshot();
+    }
+    // Stay in the pen tool so several areas can be highlighted in a row.
   } else if (drag.mode === "move") {
     snapshot();
   }
@@ -411,13 +463,47 @@ function redrawWithGuard() {
 redraw = redrawWithGuard;
 
 // ---------- Toolbar wiring ----------
+// The Draw tool uses a soft DOM cursor (see #penCursor) that swirls while
+// moving, so we hide the native cursor over the canvas and drive our own.
+const penCursorEl = document.getElementById("penCursor");
+let penCursorIdleTimer = null;
+
+function tintPenCursor() {
+  penCursorEl.style.setProperty("--pen-color", style.color);
+}
+
+function movePenCursor(evt) {
+  if (currentTool !== "pen") return;
+  penCursorEl.style.left = `${evt.clientX}px`;
+  penCursorEl.style.top = `${evt.clientY}px`;
+  penCursorEl.hidden = false;
+  penCursorEl.classList.add("moving");
+  clearTimeout(penCursorIdleTimer);
+  // Stop swirling shortly after the mouse settles.
+  penCursorIdleTimer = setTimeout(() => penCursorEl.classList.remove("moving"), 140);
+}
+
+function hidePenCursor() {
+  penCursorEl.hidden = true;
+  penCursorEl.classList.remove("moving");
+}
+
+stage.addEventListener("mousemove", movePenCursor);
+stage.addEventListener("mouseleave", hidePenCursor);
+
 function setTool(tool) {
   currentTool = tool;
   document.querySelectorAll(".tool[data-tool]").forEach((b) => {
     b.classList.toggle("active", b.dataset.tool === tool);
   });
-  canvas.style.cursor =
-    tool === "select" ? "default" : tool === "text" ? "text" : "crosshair";
+  if (tool === "pen") {
+    tintPenCursor();
+    canvas.style.cursor = "none"; // our swirling dot stands in for it
+  } else {
+    hidePenCursor();
+    canvas.style.cursor =
+      tool === "select" ? "default" : tool === "text" ? "text" : "crosshair";
+  }
 }
 
 document.querySelectorAll(".tool[data-tool]").forEach((btn) => {
@@ -426,6 +512,7 @@ document.querySelectorAll(".tool[data-tool]").forEach((btn) => {
 
 document.getElementById("color").addEventListener("input", (e) => {
   style.color = e.target.value;
+  if (currentTool === "pen") tintPenCursor();
   applyStyleToSelection();
 });
 document.getElementById("strokeWidth").addEventListener("input", (e) => {
@@ -480,6 +567,7 @@ window.addEventListener("keydown", (e) => {
     if (selectedId) { e.preventDefault(); deleteSelected(); }
   }
   if (e.key === "v" || e.key === "V") setTool("select");
+  if (e.key === "d" || e.key === "D") setTool("pen");
   if (e.key === "r" || e.key === "R") setTool("rect");
   if (e.key === "c" || e.key === "C") setTool("ellipse");
   if (e.key === "t" || e.key === "T") setTool("text");
@@ -529,8 +617,9 @@ function showMessage(text, ms = 2500) {
   messageTimer = setTimeout(() => { messageEl.hidden = true; }, ms);
 }
 
-// Sync initial UI values.
-setTool("select");
+// Sync initial UI values. Start in the pen tool so the user can draw a
+// red highlight anywhere on the shot the moment the editor opens.
+setTool("pen");
 document.getElementById("color").value = style.color;
 document.getElementById("strokeWidth").value = style.strokeWidth;
 document.getElementById("fontSize").value = style.fontSize;

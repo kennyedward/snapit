@@ -135,6 +135,50 @@ input[type="color"] {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
+/* Draw-tool cursor: a soft red dot with a swirl that spins while moving */
+.pen-cursor {
+  --pen-color: #ff3b30;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  margin-left: -8px;
+  margin-top: -8px;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  /* soft-edged dot rather than a hard circle */
+  background: radial-gradient(
+    circle at center,
+    var(--pen-color) 0%,
+    var(--pen-color) 30%,
+    color-mix(in srgb, var(--pen-color) 35%, transparent) 58%,
+    transparent 72%
+  );
+}
+.pen-cursor::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    color-mix(in srgb, var(--pen-color) 80%, transparent) 90deg,
+    transparent 200deg
+  );
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+.pen-cursor.moving::before {
+  opacity: 1;
+  animation: pen-swirl 0.7s linear infinite;
+}
+@keyframes pen-swirl {
+  to { transform: rotate(360deg); }
+}
+
 .message {
   position: fixed;
   bottom: 22px;
