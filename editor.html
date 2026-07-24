@@ -12,6 +12,9 @@
       <button class="tool" data-tool="select" title="Select / move (V)">
         <span class="ico">⤢</span><span class="label">Select</span>
       </button>
+      <button class="tool" data-tool="pen" title="Draw / highlight (D)">
+        <span class="ico">✎</span><span class="label">Draw</span>
+      </button>
       <button class="tool" data-tool="rect" title="Rectangle (R)">
         <span class="ico">▭</span><span class="label">Rect</span>
       </button>
@@ -68,6 +71,8 @@
     <canvas id="canvas"></canvas>
     <!-- Floating textarea used while editing a text object -->
     <textarea id="textInput" class="text-input" spellcheck="false"></textarea>
+    <!-- Soft, swirling cursor shown while the Draw tool is active -->
+    <div id="penCursor" class="pen-cursor" hidden></div>
     <div id="message" class="message" hidden></div>
   </main>
 
