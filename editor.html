@@ -7,74 +7,73 @@
   <link rel="stylesheet" href="editor.css" />
 </head>
 <body>
-  <header class="toolbar">
-    <div class="group">
-      <button class="tool" data-tool="select" title="Select / move (V)">
-        <span class="ico">⤢</span><span class="label">Select</span>
-      </button>
-      <button class="tool" data-tool="pen" title="Draw / highlight (D)">
-        <span class="ico">✎</span><span class="label">Draw</span>
-      </button>
-      <button class="tool" data-tool="rect" title="Rectangle (R)">
-        <span class="ico">▭</span><span class="label">Rect</span>
-      </button>
-      <button class="tool" data-tool="ellipse" title="Circle / ellipse (C)">
-        <span class="ico">◯</span><span class="label">Circle</span>
-      </button>
-      <button class="tool" data-tool="text" title="Text (T)">
-        <span class="ico">T</span><span class="label">Text</span>
-      </button>
-    </div>
-
-    <div class="group">
-      <label class="swatch-wrap" title="Stroke / text color">
-        <input type="color" id="color" value="#ff3b30" />
-        <span>Color</span>
-      </label>
-
-      <label class="range-wrap" title="Stroke width">
-        <span>Width</span>
-        <input type="range" id="strokeWidth" min="1" max="20" value="4" />
-        <span id="strokeVal" class="val">4</span>
-      </label>
-
-      <label class="range-wrap" title="Font size (text tool)">
-        <span>Font</span>
-        <input type="range" id="fontSize" min="10" max="80" value="28" />
-        <span id="fontVal" class="val">28</span>
-      </label>
-    </div>
-
-    <div class="group">
-      <button id="deleteBtn" class="tool" title="Delete selected (Del)">
-        <span class="ico">🗑</span><span class="label">Delete</span>
-      </button>
-      <button id="undoBtn" class="tool" title="Undo (Ctrl/Cmd+Z)">
-        <span class="ico">↶</span><span class="label">Undo</span>
-      </button>
-      <button id="redoBtn" class="tool" title="Redo (Ctrl/Cmd+Shift+Z)">
-        <span class="ico">↷</span><span class="label">Redo</span>
-      </button>
-    </div>
-
-    <div class="group right">
-      <button id="copyBtn" class="tool primary" title="Copy to clipboard">
-        <span class="ico">⧉</span><span class="label">Copy</span>
-      </button>
-      <button id="saveBtn" class="tool primary" title="Download PNG">
-        <span class="ico">⤓</span><span class="label">Save PNG</span>
-      </button>
-    </div>
-  </header>
-
   <main id="stage" class="stage">
     <canvas id="canvas"></canvas>
     <!-- Floating textarea used while editing a text object -->
     <textarea id="textInput" class="text-input" spellcheck="false"></textarea>
     <!-- Soft, swirling cursor shown while the Draw tool is active -->
     <div id="penCursor" class="pen-cursor" hidden></div>
+    <!-- Floating confirm bar for the Crop tool -->
+    <div id="cropConfirm" class="crop-confirm" hidden>
+      <button id="cropApplyBtn" class="crop-btn primary" title="Trim to selection (Enter)">✂ Crop</button>
+      <button id="cropCopyBtn" class="crop-btn" title="Copy just this region">⧉ Copy</button>
+      <button id="cropCancelBtn" class="crop-btn ghost" title="Cancel (Esc)">Cancel</button>
+    </div>
     <div id="message" class="message" hidden></div>
   </main>
+
+  <!-- Compact, bottom-docked control bar -->
+  <div id="dock" class="dock">
+    <div class="dock-group">
+      <button class="tool" data-tool="select" title="Select / move (V)">⤢</button>
+      <button class="tool" data-tool="pen" title="Draw / highlight (D)">✎</button>
+      <button class="tool" data-tool="rect" title="Rectangle (R)">▭</button>
+      <button class="tool" data-tool="ellipse" title="Circle / ellipse (C)">◯</button>
+      <button class="tool" data-tool="text" title="Text (T)">T</button>
+      <button class="tool" data-tool="crop" title="Crop / copy a region (X)">⛶</button>
+      <button class="tool" data-tool="eraser" title="Eraser — remove annotations (E)">⌫</button>
+    </div>
+
+    <span class="dock-sep"></span>
+
+    <div class="dock-group swatches">
+      <button class="swatch" data-color="#ff3b30" style="--c:#ff3b30" title="Red"></button>
+      <button class="swatch" data-color="#4f8cff" style="--c:#4f8cff" title="Blue"></button>
+      <button class="swatch" data-color="#34c759" style="--c:#34c759" title="Green"></button>
+      <button class="swatch" data-color="#ffd60a" style="--c:#ffd60a" title="Yellow"></button>
+      <label class="swatch custom" title="Custom color">
+        <input type="color" id="color" value="#ff3b30" />
+      </label>
+    </div>
+
+    <span class="dock-sep"></span>
+
+    <label class="dock-range" title="Stroke width">
+      <span class="mini">◍</span>
+      <input type="range" id="strokeWidth" min="1" max="20" value="4" />
+      <span id="strokeVal" class="val">4</span>
+    </label>
+    <label class="dock-range" title="Font size (text tool)">
+      <span class="mini">A</span>
+      <input type="range" id="fontSize" min="10" max="80" value="28" />
+      <span id="fontVal" class="val">28</span>
+    </label>
+
+    <span class="dock-sep"></span>
+
+    <div class="dock-group">
+      <button id="undoBtn" title="Undo (Ctrl/Cmd+Z)">↶</button>
+      <button id="redoBtn" title="Redo (Ctrl/Cmd+Shift+Z)">↷</button>
+      <button id="deleteBtn" title="Delete selected (Del)">🗑</button>
+    </div>
+
+    <span class="dock-sep"></span>
+
+    <div class="dock-group">
+      <button id="copyBtn" class="primary" title="Copy to clipboard">⧉</button>
+      <button id="saveBtn" class="primary" title="Download PNG">⤓</button>
+    </div>
+  </div>
 
   <script src="editor.js"></script>
 </body>
