@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "Kehinde Edward Odewole",
   "description": "Capture the visible browser tab and annotate it with text, rectangles, and circles.",
-  "permissions": ["activeTab", "storage"],
+  "permissions": ["activeTab", "storage", "scripting"],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
   },
