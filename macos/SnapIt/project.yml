@@ -5,6 +5,11 @@ options:
     macOS: "14.0"
   xcodeVersion: "16.0"
 
+packages:
+  KeyboardShortcuts:
+    url: https://github.com/sindresorhus/KeyboardShortcuts
+    from: "2.0.0"
+
 targets:
   SnapIt:
     type: application
@@ -14,6 +19,8 @@ targets:
         excludes:
           - "Resources/Info.plist"
           - "Resources/SnapIt.entitlements"
+    dependencies:
+      - package: KeyboardShortcuts
     settings:
       base:
         INFOPLIST_FILE: SnapIt/Resources/Info.plist
