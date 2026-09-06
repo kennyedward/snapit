@@ -1,0 +1,395 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0D5850503886F1030010C014 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A9B6EAA21B1C6537DCB6E6 /* ToolbarView.swift */; };
+		127DC7743A126B9844FEB98E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1746480130AB43480B0FF442 /* AppDelegate.swift */; };
+		1E3DF7612578505EFBB39A29 /* CaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD8B1911F7C8B7E41CB04CA /* CaptureManager.swift */; };
+		264B3BCCD0CB826AC09A2387 /* AnnotationCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D74A8BAE893FE963287012 /* AnnotationCanvas.swift */; };
+		35C8FAD6A04DD1F2017FD020 /* WindowPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B0BB516DBF3B8444476125 /* WindowPickerController.swift */; };
+		41AE7787FED7D0C0DCAEB397 /* EditorWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E73ED8EF1DB99183B56118D /* EditorWindowController.swift */; };
+		4BF6939F79CE212D4D58C455 /* SnapItApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2145FD9FE1D3B7F975522FD7 /* SnapItApp.swift */; };
+		50B7E9C85ECB5416A99CEC29 /* EditorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432DD17BBAB6447CE644236E /* EditorState.swift */; };
+		AEAEDEB371B9EE0F8267EAF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AA2F851F2B1243611719480 /* Assets.xcassets */; };
+		C18A36C714F310F609AC76EB /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A416BA6D12F8D4A812CC5E5 /* Annotation.swift */; };
+		CE05D52231F8B722B698AF08 /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C6DEBB65AD633664897A09 /* EditorView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		14A9B6EAA21B1C6537DCB6E6 /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
+		1746480130AB43480B0FF442 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2145FD9FE1D3B7F975522FD7 /* SnapItApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapItApp.swift; sourceTree = "<group>"; };
+		22AD154274F627AB4C79DF01 /* SnapIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		25D74A8BAE893FE963287012 /* AnnotationCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationCanvas.swift; sourceTree = "<group>"; };
+		3BD8B1911F7C8B7E41CB04CA /* CaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureManager.swift; sourceTree = "<group>"; };
+		432DD17BBAB6447CE644236E /* EditorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorState.swift; sourceTree = "<group>"; };
+		52B0BB516DBF3B8444476125 /* WindowPickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowPickerController.swift; sourceTree = "<group>"; };
+		78C6DEBB65AD633664897A09 /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
+		7AA2F851F2B1243611719480 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8E73ED8EF1DB99183B56118D /* EditorWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorWindowController.swift; sourceTree = "<group>"; };
+		9A416BA6D12F8D4A812CC5E5 /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		28C1CE774EDF4CBA782A6D64 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22AD154274F627AB4C79DF01 /* SnapIt.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4F08BE31C83BCA644EABB0F5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9A416BA6D12F8D4A812CC5E5 /* Annotation.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		64555A646676929FE08CBC28 /* SnapIt */ = {
+			isa = PBXGroup;
+			children = (
+				A01A1D52B3A2038B2C04B910 /* App */,
+				8B6539666383E33CC8CC644B /* Capture */,
+				F9C58B85F10AC0B9E1BF1911 /* Editor */,
+				4F08BE31C83BCA644EABB0F5 /* Models */,
+				EC70EABA0CEB8EBBB8256319 /* Resources */,
+				BC868018FFA52152CED39D81 /* Windows */,
+			);
+			path = SnapIt;
+			sourceTree = "<group>";
+		};
+		8B6539666383E33CC8CC644B /* Capture */ = {
+			isa = PBXGroup;
+			children = (
+				3BD8B1911F7C8B7E41CB04CA /* CaptureManager.swift */,
+			);
+			path = Capture;
+			sourceTree = "<group>";
+		};
+		A01A1D52B3A2038B2C04B910 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1746480130AB43480B0FF442 /* AppDelegate.swift */,
+				2145FD9FE1D3B7F975522FD7 /* SnapItApp.swift */,
+				52B0BB516DBF3B8444476125 /* WindowPickerController.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B5D9CB77B50284D6F463D965 = {
+			isa = PBXGroup;
+			children = (
+				64555A646676929FE08CBC28 /* SnapIt */,
+				28C1CE774EDF4CBA782A6D64 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BC868018FFA52152CED39D81 /* Windows */ = {
+			isa = PBXGroup;
+			children = (
+				8E73ED8EF1DB99183B56118D /* EditorWindowController.swift */,
+			);
+			path = Windows;
+			sourceTree = "<group>";
+		};
+		EC70EABA0CEB8EBBB8256319 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7AA2F851F2B1243611719480 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F9C58B85F10AC0B9E1BF1911 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				25D74A8BAE893FE963287012 /* AnnotationCanvas.swift */,
+				432DD17BBAB6447CE644236E /* EditorState.swift */,
+				78C6DEBB65AD633664897A09 /* EditorView.swift */,
+				14A9B6EAA21B1C6537DCB6E6 /* ToolbarView.swift */,
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B23EC8F83F425CFA0707AE4D /* SnapIt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA0BE4B3FAA13E3F9E68C6D1 /* Build configuration list for PBXNativeTarget "SnapIt" */;
+			buildPhases = (
+				A476570E6B9AC1A1ABF82241 /* Sources */,
+				2BFD3ED5DF06C2F1753A0680 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SnapIt;
+			packageProductDependencies = (
+			);
+			productName = SnapIt;
+			productReference = 22AD154274F627AB4C79DF01 /* SnapIt.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A0DBF0AF2D3530FBEB55F332 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = CF0898A27F867963A2B5BA32 /* Build configuration list for PBXProject "SnapIt" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = B5D9CB77B50284D6F463D965;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 28C1CE774EDF4CBA782A6D64 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B23EC8F83F425CFA0707AE4D /* SnapIt */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2BFD3ED5DF06C2F1753A0680 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEAEDEB371B9EE0F8267EAF7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A476570E6B9AC1A1ABF82241 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C18A36C714F310F609AC76EB /* Annotation.swift in Sources */,
+				264B3BCCD0CB826AC09A2387 /* AnnotationCanvas.swift in Sources */,
+				127DC7743A126B9844FEB98E /* AppDelegate.swift in Sources */,
+				1E3DF7612578505EFBB39A29 /* CaptureManager.swift in Sources */,
+				50B7E9C85ECB5416A99CEC29 /* EditorState.swift in Sources */,
+				CE05D52231F8B722B698AF08 /* EditorView.swift in Sources */,
+				41AE7787FED7D0C0DCAEB397 /* EditorWindowController.swift in Sources */,
+				4BF6939F79CE212D4D58C455 /* SnapItApp.swift in Sources */,
+				0D5850503886F1030010C014 /* ToolbarView.swift in Sources */,
+				35C8FAD6A04DD1F2017FD020 /* WindowPickerController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		9F3D0A7DB86FF4BB49EF009D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		B1403E95CC170ABCBB2336B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SnapIt/Resources/SnapIt.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SnapIt/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kennyedward.snapit;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		BCB060C6B1261B565EC8A4A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C5A0C67A65B9753FEF7038A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SnapIt/Resources/SnapIt.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SnapIt/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kennyedward.snapit;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CF0898A27F867963A2B5BA32 /* Build configuration list for PBXProject "SnapIt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCB060C6B1261B565EC8A4A8 /* Debug */,
+				9F3D0A7DB86FF4BB49EF009D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DA0BE4B3FAA13E3F9E68C6D1 /* Build configuration list for PBXNativeTarget "SnapIt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1403E95CC170ABCBB2336B0 /* Debug */,
+				C5A0C67A65B9753FEF7038A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A0DBF0AF2D3530FBEB55F332 /* Project object */;
+}
