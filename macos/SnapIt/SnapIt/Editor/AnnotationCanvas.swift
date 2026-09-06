@@ -35,6 +35,14 @@ struct AnnotationCanvas: View {
         let rect = annotation.normalizedRect
 
         switch annotation.type {
+        case .pen:
+            guard let path = annotation.penPath else { break }
+            context.stroke(
+                path,
+                with: .color(annotation.color),
+                style: StrokeStyle(lineWidth: annotation.strokeWidth, lineCap: .round, lineJoin: .round)
+            )
+
         case .rectangle:
             let path = Path(rect)
             context.stroke(path, with: .color(annotation.color), lineWidth: annotation.strokeWidth)
