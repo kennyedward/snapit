@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01FC93768BCCAB8A509376DA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E6B2B61E00D1B237C9ABF2 /* SettingsView.swift */; };
 		0D5850503886F1030010C014 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A9B6EAA21B1C6537DCB6E6 /* ToolbarView.swift */; };
 		127DC7743A126B9844FEB98E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1746480130AB43480B0FF442 /* AppDelegate.swift */; };
+		179A4204D32DE73F097B9318 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 6F15880CD1FFE8E381639AFA /* KeyboardShortcuts */; };
 		1E3DF7612578505EFBB39A29 /* CaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD8B1911F7C8B7E41CB04CA /* CaptureManager.swift */; };
 		264B3BCCD0CB826AC09A2387 /* AnnotationCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D74A8BAE893FE963287012 /* AnnotationCanvas.swift */; };
 		35C8FAD6A04DD1F2017FD020 /* WindowPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B0BB516DBF3B8444476125 /* WindowPickerController.swift */; };
@@ -18,6 +20,7 @@
 		AEAEDEB371B9EE0F8267EAF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AA2F851F2B1243611719480 /* Assets.xcassets */; };
 		C18A36C714F310F609AC76EB /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A416BA6D12F8D4A812CC5E5 /* Annotation.swift */; };
 		CE05D52231F8B722B698AF08 /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C6DEBB65AD633664897A09 /* EditorView.swift */; };
+		DF817BEAD81646658F9424A0 /* CaptureCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88DB24C8EC00184005D4C32 /* CaptureCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +36,20 @@
 		7AA2F851F2B1243611719480 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E73ED8EF1DB99183B56118D /* EditorWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorWindowController.swift; sourceTree = "<group>"; };
 		9A416BA6D12F8D4A812CC5E5 /* Annotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
+		B8E6B2B61E00D1B237C9ABF2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F88DB24C8EC00184005D4C32 /* CaptureCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7E7BF9C78A26F3B2F4E2C1D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				179A4204D32DE73F097B9318 /* KeyboardShortcuts in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		28C1CE774EDF4CBA782A6D64 /* Products */ = {
@@ -77,6 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				1746480130AB43480B0FF442 /* AppDelegate.swift */,
+				F88DB24C8EC00184005D4C32 /* CaptureCoordinator.swift */,
+				B8E6B2B61E00D1B237C9ABF2 /* SettingsView.swift */,
 				2145FD9FE1D3B7F975522FD7 /* SnapItApp.swift */,
 				52B0BB516DBF3B8444476125 /* WindowPickerController.swift */,
 			);
@@ -127,6 +145,7 @@
 			buildPhases = (
 				A476570E6B9AC1A1ABF82241 /* Sources */,
 				2BFD3ED5DF06C2F1753A0680 /* Resources */,
+				7E7BF9C78A26F3B2F4E2C1D5 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -134,6 +153,7 @@
 			);
 			name = SnapIt;
 			packageProductDependencies = (
+				6F15880CD1FFE8E381639AFA /* KeyboardShortcuts */,
 			);
 			productName = SnapIt;
 			productReference = 22AD154274F627AB4C79DF01 /* SnapIt.app */;
@@ -159,6 +179,9 @@
 			);
 			mainGroup = B5D9CB77B50284D6F463D965;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				981CE524AFDDDFBB3EB91B15 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 28C1CE774EDF4CBA782A6D64 /* Products */;
 			projectDirPath = "";
@@ -188,10 +211,12 @@
 				C18A36C714F310F609AC76EB /* Annotation.swift in Sources */,
 				264B3BCCD0CB826AC09A2387 /* AnnotationCanvas.swift in Sources */,
 				127DC7743A126B9844FEB98E /* AppDelegate.swift in Sources */,
+				DF817BEAD81646658F9424A0 /* CaptureCoordinator.swift in Sources */,
 				1E3DF7612578505EFBB39A29 /* CaptureManager.swift in Sources */,
 				50B7E9C85ECB5416A99CEC29 /* EditorState.swift in Sources */,
 				CE05D52231F8B722B698AF08 /* EditorView.swift in Sources */,
 				41AE7787FED7D0C0DCAEB397 /* EditorWindowController.swift in Sources */,
+				01FC93768BCCAB8A509376DA /* SettingsView.swift in Sources */,
 				4BF6939F79CE212D4D58C455 /* SnapItApp.swift in Sources */,
 				0D5850503886F1030010C014 /* ToolbarView.swift in Sources */,
 				35C8FAD6A04DD1F2017FD020 /* WindowPickerController.swift in Sources */,
@@ -390,6 +415,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		981CE524AFDDDFBB3EB91B15 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6F15880CD1FFE8E381639AFA /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 981CE524AFDDDFBB3EB91B15 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A0DBF0AF2D3530FBEB55F332 /* Project object */;
 }

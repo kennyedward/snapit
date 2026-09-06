@@ -1,5 +1,5 @@
 import SwiftUI
-import ScreenCaptureKit
+import KeyboardShortcuts
 
 @main
 struct SnapItApp: App {
@@ -8,14 +8,21 @@ struct SnapItApp: App {
     var body: some Scene {
         MenuBarExtra("SnapIt", systemImage: "camera.viewfinder") {
             Button("Capture Full Screen") {
-                Task { @MainActor in await captureFullScreen() }
+                Task { @MainActor in await CaptureCoordinator.shared.captureFullScreen() }
             }
-            .keyboardShortcut("1")
+            .globalKeyboardShortcut(.captureFullScreen)
 
             Button("Capture Window…") {
-                Task { @MainActor in await pickAndCaptureWindow() }
+                Task { @MainActor in await CaptureCoordinator.shared.pickAndCaptureWindow() }
             }
-            .keyboardShortcut("2")
+            .globalKeyboardShortcut(.captureWindow)
+
+            Divider()
+
+            SettingsLink {
+                Text("Settings…")
+            }
+            .keyboardShortcut(",")
 
             Divider()
 
@@ -24,50 +31,9 @@ struct SnapItApp: App {
             }
             .keyboardShortcut("q")
         }
-    }
 
-    @MainActor
-    private func captureFullScreen() async {
-        try? await Task.sleep(for: .milliseconds(200))
-        do {
-            let image = try await CaptureManager.shared.captureFullScreen()
-            EditorWindowController.shared.open(with: image)
-        } catch {
-            showError(error)
+        Settings {
+            SettingsView()
         }
-    }
-
-    @MainActor
-    private func pickAndCaptureWindow() async {
-        do {
-            let windows = try await CaptureManager.shared.availableWindows()
-            guard !windows.isEmpty else {
-                showError(CaptureError.noDisplay)
-                return
-            }
-
-            let picker = WindowPickerController(windows: windows) { selected in
-                Task { @MainActor in
-                    do {
-                        let image = try await CaptureManager.shared.captureWindow(selected)
-                        EditorWindowController.shared.open(with: image)
-                    } catch {
-                        showError(error)
-                    }
-                }
-            }
-            picker.show()
-        } catch {
-            showError(error)
-        }
-    }
-
-    @MainActor
-    private func showError(_ error: Error) {
-        let alert = NSAlert()
-        alert.messageText = "Capture Failed"
-        alert.informativeText = error.localizedDescription
-        alert.alertStyle = .warning
-        alert.runModal()
     }
 }

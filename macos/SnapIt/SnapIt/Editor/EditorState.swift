@@ -5,7 +5,7 @@ final class EditorState: ObservableObject {
     let image: NSImage
 
     @Published var annotations: [Annotation] = []
-    @Published var currentTool: AnnotationTool = .rectangle
+    @Published var currentTool: AnnotationTool = .pen
     @Published var currentColor: Color = .red
     @Published var strokeWidth: CGFloat = 3
     @Published var fontSize: CGFloat = 18
@@ -65,12 +65,20 @@ final class EditorState: ObservableObject {
         )
         if currentTool == .text {
             annotation.type = .text("")
+        } else if currentTool == .pen {
+            annotation.type = .pen([point])
         }
         inProgressAnnotation = annotation
     }
 
     func continueDraw(to point: CGPoint) {
         guard var annotation = inProgressAnnotation else { return }
+        if case .pen(var points) = annotation.type {
+            points.append(point)
+            annotation.type = .pen(points)
+            inProgressAnnotation = annotation
+            return
+        }
         annotation.size = CGSize(
             width: point.x - annotation.origin.x,
             height: point.y - annotation.origin.y
@@ -84,6 +92,13 @@ final class EditorState: ObservableObject {
 
         let rect = annotation.normalizedRect
         guard rect.width > 4 || rect.height > 4 else { return }
+
+        if case .pen = annotation.type {
+            annotation.origin = rect.origin
+            annotation.size = rect.size
+            addAnnotation(annotation)
+            return
+        }
 
         annotation.origin = rect.origin
         annotation.size = rect.size
@@ -119,8 +134,7 @@ final class EditorState: ObservableObject {
     func moveSelected(by delta: CGSize) {
         guard let id = selectedAnnotationId,
               let index = annotations.firstIndex(where: { $0.id == id }) else { return }
-        annotations[index].origin.x += delta.width
-        annotations[index].origin.y += delta.height
+        annotations[index].translate(by: delta)
     }
 
     func commitMove() {
@@ -173,6 +187,13 @@ final class EditorState: ObservableObject {
             context.setLineWidth(annotation.strokeWidth)
 
             switch annotation.type {
+            case .pen:
+                guard let path = annotation.penPath else { break }
+                context.setLineCap(.round)
+                context.setLineJoin(.round)
+                context.addPath(path.cgPath)
+                context.strokePath()
+
             case .rectangle:
                 context.stroke(rect)
 
