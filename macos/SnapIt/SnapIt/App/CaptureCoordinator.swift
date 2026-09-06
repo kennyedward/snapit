@@ -2,8 +2,8 @@ import AppKit
 import KeyboardShortcuts
 
 extension KeyboardShortcuts.Name {
-    static let captureFullScreen = Self("captureFullScreen", default: .init(.s, modifiers: [.option, .shift]))
-    static let captureWindow = Self("captureWindow", default: .init(.w, modifiers: [.option, .shift]))
+    static let captureFullScreen = Self("captureFullScreen", default: .init(.one, modifiers: [.command]))
+    static let captureWindow = Self("captureWindow", default: .init(.two, modifiers: [.command]))
 }
 
 /// Single entry point for capture actions, shared by the menu bar menu and the global hotkeys.
